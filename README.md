@@ -36,6 +36,7 @@ Do the CLI path first to learn it, then deploy the Bicep to see the whole thing 
 | [lab-b-app-registration-oidc-sso](lab-b-app-registration-oidc-sso/) | Register an app in Microsoft Entra ID and wire OpenID Connect single sign-on for an App Service with zero auth code | Intermediate | ~free (F1) |
 | [lab-c-rbac-security-groups](lab-c-rbac-security-groups/) | Manage Key Vault access at scale by assigning a role to an Entra security group and controlling access through membership | Intermediate | ~free |
 | [lab-d-azure-policy-as-code](lab-d-azure-policy-as-code/) | Author a custom Azure Policy that denies public-blob storage, prove it blocks bad resources, and deploy it as code with Bicep | Advanced | ~free |
+| [lab-first-bicep-storage](lab-first-bicep-storage/) | Your first Bicep deploy: create a storage account as code, preview with what-if, and see idempotency in action | Beginner | ~free |
 
 _More labs are added regularly._
 
