@@ -37,6 +37,7 @@ Do the CLI path first to learn it, then deploy the Bicep to see the whole thing 
 | [lab-c-rbac-security-groups](lab-c-rbac-security-groups/) | Manage Key Vault access at scale by assigning a role to an Entra security group and controlling access through membership | Intermediate | ~free |
 | [lab-d-azure-policy-as-code](lab-d-azure-policy-as-code/) | Author a custom Azure Policy that denies public-blob storage, prove it blocks bad resources, and deploy it as code with Bicep | Advanced | ~free |
 | [lab-first-bicep-storage](lab-first-bicep-storage/) | Your first Bicep deploy: create a storage account as code, preview with what-if, and see idempotency in action | Beginner | ~free |
+| [lab-resource-locks](lab-resource-locks/) | Protect resources from accidental deletion with a CanNotDelete lock, prove it blocks a real delete, and deploy the lock as code | Beginner–Intermediate | ~free |
 
 _More labs are added regularly._
 
