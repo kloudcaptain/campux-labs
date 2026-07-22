@@ -267,4 +267,4 @@ See [`bicep/`](bicep/). Note an important reality: **Entra users, groups, and me
 
 **Next:** Lab B — App Registration & OIDC SSO, so Campux staff sign in with single sign-on.
 
-*Part of the full Campux Cloud Engineering Bootcamp → [link to track]*
+*Part of the free [CAMPUX Cloud Engineering Bootcamp](https://azure.campux.co) — see all labs at [azure.campux.co/labs](https://azure.campux.co/labs).*

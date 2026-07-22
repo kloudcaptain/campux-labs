@@ -249,4 +249,4 @@ See [`bicep/`](bicep/). As in Lab C, the **app registration itself is a Microsof
 
 **Next:** Lab D — Azure Policy & policy-as-code, to govern everything you've built across the track.
 
-*Part of the full Campux Cloud Engineering Bootcamp → [link to track]*
+*Part of the free [CAMPUX Cloud Engineering Bootcamp](https://azure.campux.co) — see all labs at [azure.campux.co/labs](https://azure.campux.co/labs).*

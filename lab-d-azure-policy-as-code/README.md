@@ -235,4 +235,4 @@ Both empty/`false`.
 - **Scope controls blast radius:** definitions live at subscription/management-group level; assignments apply the rule to a subscription, resource group, or below.
 - **Policy as code** (Bicep) makes governance reviewable, repeatable, and auditable.
 
-*This completes the Identity & Governance track (Labs A–D). Part of the full Campux Cloud Engineering Bootcamp → [link to track]*
+*This completes the Identity & Governance track (Labs A–D). Part of the free [CAMPUX Cloud Engineering Bootcamp](https://azure.campux.co) — see all labs at [azure.campux.co/labs](https://azure.campux.co/labs).*

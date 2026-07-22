@@ -279,4 +279,4 @@ Both empty/`false` means you're back to zero — no surprise bill, no reserved n
 
 **Next:** Lab C — assign these roles to **Entra security groups** instead of individual identities, the way real orgs manage access at scale.
 
-*Part of the full Campux Cloud Engineering Bootcamp → [link to track]*
+*Part of the free [CAMPUX Cloud Engineering Bootcamp](https://azure.campux.co) — see all labs at [azure.campux.co/labs](https://azure.campux.co/labs).*

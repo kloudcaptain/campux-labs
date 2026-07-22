@@ -164,4 +164,4 @@ az group delete --name "$RG" --yes
 
 **Next:** apply this to something with access control — [Lab A: RBAC & Managed Identity](../lab-a-rbac-managed-identity/) has a Bicep path that builds on exactly these ideas.
 
-*Part of the full Campux Cloud Engineering Bootcamp → [link to track]*
+*Part of the free [CAMPUX Cloud Engineering Bootcamp](https://azure.campux.co) — see all labs at [azure.campux.co/labs](https://azure.campux.co/labs).*
