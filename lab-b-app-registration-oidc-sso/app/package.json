@@ -1,0 +1,12 @@
+{
+  "name": "campux-staff-portal",
+  "version": "1.0.0",
+  "description": "Minimal Campux Retail staff portal for the App Registration + OIDC SSO lab. No dependencies.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
