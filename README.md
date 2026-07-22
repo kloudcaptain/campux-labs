@@ -33,6 +33,7 @@ Do the CLI path first to learn it, then deploy the Bicep to see the whole thing 
 | Lab | What you build | Level | Cost |
 | --- | --- | --- | --- |
 | [lab-a-rbac-managed-identity](lab-a-rbac-managed-identity/) | An App Service that reads a Key Vault secret using a managed identity + least-privilege RBAC — zero credentials in code | Intermediate | ~free (F1) |
+| [lab-c-rbac-security-groups](lab-c-rbac-security-groups/) | Manage Key Vault access at scale by assigning a role to an Entra security group and controlling access through membership | Intermediate | ~free |
 
 _More labs are added regularly._
 
