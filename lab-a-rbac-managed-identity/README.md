@@ -158,10 +158,21 @@ Prints the connection string. Good — the secret exists and you can read it.
 
 ## Stage 4 — App Service with a managed identity
 
+> **Heads up — App Service quota can be 0 in your region.** Many new/free subscriptions start with an App Service **quota of 0 "Total VMs" in some regions**, including `eastus`. If so, `az appservice plan create` fails with *"Operation cannot be completed without additional quota … Current Limit (Total VMs): 0."* This is a subscription limit, **not** a mistake in your commands. The fix is simply to create the plan in a region that does have free-tier quota — your App Service can live in a different region from the Key Vault, and everything still works. The loop below tries several regions and uses the first that succeeds.
+
 > Runtime token: this lab uses `NODE:20-lts`. If `az webapp create` ever rejects it, list the current accepted tokens with `az webapp list-runtimes --os-type linux | grep -i node` and use the newest LTS shown.
 
 ```bash
-az appservice plan create --name "$PLAN" --resource-group "$RG" --sku F1 --is-linux
+# Create the Free (F1) plan in the first region that has quota.
+for LOC in "$LOCATION" eastus2 westus2 centralus westus3 northeurope westeurope; do
+  echo "Trying $LOC ..."
+  if az appservice plan create --name "$PLAN" --resource-group "$RG" --sku F1 --is-linux --location "$LOC" 1>/dev/null 2>&1; then
+    echo ">>> Plan created in $LOC"; break
+  else
+    echo "    no F1 quota in $LOC — trying the next region"
+  fi
+done
+
 az webapp create --name "$APP" --resource-group "$RG" --plan "$PLAN" --runtime "NODE:20-lts"
 az webapp identity assign --name "$APP" --resource-group "$RG"
 APP_PID=$(az webapp identity show --name "$APP" --resource-group "$RG" --query principalId -o tsv)
@@ -169,6 +180,8 @@ echo "App identity object id: $APP_PID"
 ```
 
 ✅ **Checkpoint:** `$APP_PID` is a GUID (not empty). That GUID is the app's identity in Entra ID — no password anywhere.
+
+> If **every** region in the loop reports "no F1 quota," your whole subscription needs a quota bump: open the Azure portal → **Quotas** → **App Service**, or request an increase for "App Service" / "Free VMs" in a region. It's a free, usually-instant self-service request. Then re-run the block.
 
 ---
 

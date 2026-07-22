@@ -87,9 +87,21 @@ echo "Tenant=$TENANT_ID"
 
 ## Stage 1 — Deploy the portal (still unprotected)
 
+> **Heads up — App Service quota can be 0 in your region.** Many new/free subscriptions start with an App Service **quota of 0 "Total VMs" in some regions**, including `eastus`. If `az appservice plan create` fails with *"Operation cannot be completed without additional quota … Current Limit (Total VMs): 0,"* that's a subscription limit, not a mistake. The loop below creates the plan in the first region that has free-tier quota. (If *every* region reports 0, request an increase in the portal → **Quotas** → **App Service**, then re-run.)
+
 ```bash
 az group create --name "$RG" --location "$LOCATION"
-az appservice plan create --name "$PLAN" --resource-group "$RG" --sku F1 --is-linux
+
+# Create the Free (F1) plan in the first region that has quota.
+for LOC in "$LOCATION" eastus2 westus2 centralus westus3 northeurope westeurope; do
+  echo "Trying $LOC ..."
+  if az appservice plan create --name "$PLAN" --resource-group "$RG" --sku F1 --is-linux --location "$LOC" 1>/dev/null 2>&1; then
+    echo ">>> Plan created in $LOC"; break
+  else
+    echo "    no F1 quota in $LOC — trying the next region"
+  fi
+done
+
 az webapp create --name "$APP" --resource-group "$RG" --plan "$PLAN" --runtime "NODE:20-lts"
 ```
 
