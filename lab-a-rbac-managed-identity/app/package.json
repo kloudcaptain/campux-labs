@@ -1,0 +1,12 @@
+{
+  "name": "campux-product-api",
+  "version": "1.0.0",
+  "description": "Minimal Campux Retail product API for the RBAC + Managed Identity lab. No dependencies.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

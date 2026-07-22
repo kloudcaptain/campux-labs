@@ -1,0 +1,15 @@
+# Build artifacts created while running labs
+*.zip
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Bicep build output
+*.json.tmp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
