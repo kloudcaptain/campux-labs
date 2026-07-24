@@ -1,7 +1,9 @@
 # Lab A — RBAC & Managed Identity: read a secret with zero credentials
 
 **Track:** Identity & Governance (Lab A of 4)
-**Status:** Authored — **PENDING one real end-to-end certification run** before publish.
+**Status:** ✅ Certified — passed a live end-to-end run (2026-07-24).
+
+> **Running locally on Windows (Git Bash)?** Run `export MSYS_NO_PATHCONV=1` first — Git Bash otherwise rewrites `/subscriptions/...` arguments into Windows paths and role assignments fail with `MissingSubscription`. If you have more than one subscription, also run `az account set --subscription <id>`. (Both are no-ops in Cloud Shell.)
 **Level:** Intermediate · **Time:** ~35 min · **Cost:** effectively free (see below)
 
 > Certification note for the author: run every command block below, in order, in a **fresh Azure Cloud Shell (Bash)** on a throwaway resource group. It is certified only after a clean pass ending with `curl` returning the real connection string and teardown leaving nothing behind.
@@ -125,7 +127,15 @@ Must print `true`. (This is what makes the vault use Azure roles instead of lega
 An RBAC-mode vault does **not** automatically let its creator read or write secret data. You must grant yourself the data-plane role first. This surprises almost everyone.
 
 ```bash
-ME=$(az ad signed-in-user show --query id -o tsv)
+# your user object id — the normal way (work/school accounts)
+ME=$(az ad signed-in-user show --query id -o tsv 2>/dev/null)
+# personal Microsoft accounts (Gmail/Outlook) return nothing above — read the oid from your token:
+if [ -z "$ME" ]; then
+  PAYLOAD=$(az account get-access-token --query accessToken -o tsv | cut -d. -f2 | tr '_-' '/+')
+  case $(( ${#PAYLOAD} % 4 )) in 2) PAYLOAD="$PAYLOAD==";; 3) PAYLOAD="$PAYLOAD=";; esac
+  ME=$(printf '%s' "$PAYLOAD" | base64 -d 2>/dev/null | grep -o '"oid":"[^"]*"' | cut -d'"' -f4)
+fi
+echo "ME=$ME"   # must be a GUID
 
 az role assignment create \
   --role "Key Vault Secrets Officer" \
@@ -160,7 +170,7 @@ Prints the connection string. Good — the secret exists and you can read it.
 
 > **Heads up — App Service quota can be 0 in your region.** Many new/free subscriptions start with an App Service **quota of 0 "Total VMs" in some regions**, including `eastus`. If so, `az appservice plan create` fails with *"Operation cannot be completed without additional quota … Current Limit (Total VMs): 0."* This is a subscription limit, **not** a mistake in your commands. The fix is simply to create the plan in a region that does have free-tier quota — your App Service can live in a different region from the Key Vault, and everything still works. The loop below tries several regions and uses the first that succeeds.
 
-> Runtime token: this lab uses `NODE:20-lts`. If `az webapp create` ever rejects it, list the current accepted tokens with `az webapp list-runtimes --os-type linux | grep -i node` and use the newest LTS shown.
+> Runtime: the command below auto-selects a current Node LTS from `az webapp list-runtimes` — Azure retires versions over time, and the CLI now returns objects, so we query `.config` and swap `|` for the `:` that `--runtime` wants.
 
 ```bash
 # Create the Free (F1) plan in the first region that has quota.
@@ -173,7 +183,8 @@ for LOC in "$LOCATION" eastus2 westus2 centralus westus3 northeurope westeurope;
   fi
 done
 
-az webapp create --name "$APP" --resource-group "$RG" --plan "$PLAN" --runtime "NODE:20-lts"
+RT=$(az webapp list-runtimes --os-type linux --query "[?runtime=='Node'].config" -o tsv | grep -i lts | head -1 | tr '|' ':')
+az webapp create --name "$APP" --resource-group "$RG" --plan "$PLAN" --runtime "$RT"
 az webapp identity assign --name "$APP" --resource-group "$RG"
 APP_PID=$(az webapp identity show --name "$APP" --resource-group "$RG" --query principalId -o tsv)
 echo "App identity object id: $APP_PID"
@@ -222,7 +233,7 @@ Get the tiny zero-dependency app (`server.js` + `package.json`) into Cloud Shell
 ```bash
 git clone https://github.com/kloudcaptain/campux-labs.git
 cd campux-labs/lab-a-rbac-managed-identity/app
-zip app.zip server.js package.json
+zip app.zip server.js package.json 2>/dev/null || powershell -NoProfile -Command "Compress-Archive -Path server.js,package.json -DestinationPath app.zip -Force"
 az webapp deploy --name "$APP" --resource-group "$RG" --src-path app.zip --type zip
 ```
 
