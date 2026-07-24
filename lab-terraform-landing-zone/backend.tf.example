@@ -1,0 +1,10 @@
+# Rename to backend.tf and fill in your storage account name, then run:
+#   terraform init -migrate-state
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "campux-lab-tfstate-rg"
+    storage_account_name = "REPLACE_WITH_YOUR_SA"
+    container_name       = "tfstate"
+    key                  = "landing-zone.tfstate"
+  }
+}

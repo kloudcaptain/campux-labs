@@ -1,0 +1,31 @@
+# Copy this to .github/workflows/deploy.yml IN YOUR OWN REPO.
+name: deploy
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  id-token: write        # lets the run request an OIDC token
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy a storage account
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az deployment group create \
+              --resource-group campux-lab-oidc-rg \
+              --template-uri https://raw.githubusercontent.com/kloudcaptain/campux-labs/main/lab-github-actions-oidc/bicep/main.bicep
