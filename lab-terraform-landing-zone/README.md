@@ -1,7 +1,7 @@
 # Terraform on Azure — a landing zone with remote state
 
 **Track:** Infrastructure as Code · **Level:** Intermediate · **Time:** ~40 min · **Cost:** effectively free (a resource group + a tiny storage account)
-**Status:** Authored — pending one real end-to-end certification run before publish.
+**Status:** ✅ Certified — passed a live end-to-end run in Azure (2026-07-24).
 **Full walkthrough (illustrated):** https://azure.campux.co/lab-terraform-landing-zone
 
 > Run everything in **Azure Cloud Shell (Bash)** at https://shell.azure.com — `terraform` and `az` are preinstalled and already signed in to your subscription.
