@@ -2,7 +2,7 @@
 
 Free, hands-on Azure cloud-engineering labs. Each lab is a self-contained folder you can clone and run in **Azure Cloud Shell (Bash)** — real Azure resources, real verification at every step, and a mandatory teardown so you never get a surprise bill.
 
-These labs accompany the [CAMPUX Cloud Engineering Bootcamp](https://campux.example). Do a lab in ~30 minutes; walk away able to say you've *built* it, not just read about it.
+These labs accompany the [CAMPUX Cloud Engineering Bootcamp](https://azure.campux.co). Do a lab in ~30 minutes; walk away able to say you've *built* it, not just read about it.
 
 ## How to use a lab
 
