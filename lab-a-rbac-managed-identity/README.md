@@ -211,7 +211,7 @@ az role assignment create \
 ✅ **Checkpoint — prove least privilege by inspection:**
 
 ```bash
-az role assignment list --assignee "$APP_PID" --scope "$VAULT_SCOPE" -o table
+az role assignment list --scope "$VAULT_SCOPE" --query "[?principalId=='$APP_PID'].{role:roleDefinitionName, type:principalType}" -o table
 ```
 
 You should see exactly **one** role: `Key Vault Secrets User`. That role grants read of secret contents only — no secret write, no keys, no certificates. If you ever needed the app to write secrets you'd add `Key Vault Secrets Officer`; you don't, so you don't.

@@ -130,11 +130,18 @@ echo "Group object id: $GROUP_ID"
 This is the whole idea: one assignment, to the group, scoped to just this vault.
 
 ```bash
-az role assignment create \
-  --role "Key Vault Secrets User" \
-  --assignee-object-id "$GROUP_ID" \
-  --assignee-principal-type Group \
-  --scope "$VAULT_SCOPE"
+# A brand-new group takes a few seconds to replicate across the directory, so a
+# role assignment fired immediately can fail with PrincipalNotFound. Retry until it lands.
+for i in 1 2 3 4 5 6; do
+  if az role assignment create \
+       --role "Key Vault Secrets User" \
+       --assignee-object-id "$GROUP_ID" \
+       --assignee-principal-type Group \
+       --scope "$VAULT_SCOPE"; then
+    echo ">>> Role assigned to the group on attempt $i"; break
+  fi
+  echo "attempt $i: group still replicating (PrincipalNotFound) — waiting 20s"; sleep 20
+done
 ```
 
 ✅ **Checkpoint:**

@@ -114,10 +114,10 @@ az policy assignment create \
 ✅ **Checkpoint:**
 
 ```bash
-az policy assignment show --name "campux-secure-transfer" --scope "$RG_SCOPE" --query "displayName" -o tsv
+az policy assignment show --name "campux-secure-transfer" --scope "$RG_SCOPE" --query "name" -o tsv
 ```
 
-Returns the assignment. (This built-in uses the *Audit* effect — its compliance results appear after Azure's next evaluation scan, which can take up to ~30 min. We won't wait on that; the enforcement we *prove* comes from the custom Deny policy next.)
+Returns `campux-secure-transfer`. (We query `name`, not `displayName` — the built-in was assigned without an explicit `--display-name`, so its display name is empty; the assignment is still there.) (This built-in uses the *Audit* effect — its compliance results appear after Azure's next evaluation scan, which can take up to ~30 min. We won't wait on that; the enforcement we *prove* comes from the custom Deny policy next.)
 
 ---
 

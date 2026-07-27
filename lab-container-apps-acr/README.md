@@ -30,9 +30,11 @@ ACR_ID=$(az acr show -n "$ACR" -g "$RG" --query id -o tsv)
 az identity create -n campux-aca-id -g "$RG"
 ID_ID=$(az identity show -n campux-aca-id -g "$RG" --query id -o tsv)
 ID_PRINCIPAL=$(az identity show -n campux-aca-id -g "$RG" --query principalId -o tsv)
-az role assignment create --assignee "$ID_PRINCIPAL" --role AcrPull --scope "$ACR_ID"
+az role assignment create --assignee-object-id "$ID_PRINCIPAL" --assignee-principal-type ServicePrincipal --role AcrPull --scope "$ACR_ID"
 
 # deploy, scaled to zero, pulling via the identity
+# first time in a subscription: register the Container Apps provider once
+az provider register -n Microsoft.App --wait
 az containerapp env create -n campux-aca-env -g "$RG" -l eastus
 az containerapp create -n campux-quickstart -g "$RG" --environment campux-aca-env \
   --image "$ACR.azurecr.io/quickstart:v1" \

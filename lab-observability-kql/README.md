@@ -34,7 +34,7 @@ az monitor diagnostic-settings subscription create --name campux-activity-to-log
 # generate a little activity
 az group create -n campux-obs-ping -l eastus && az group delete -n campux-obs-ping --yes
 
-# ask a question in KQL (wait a few minutes for data to land)
+# ask a question in KQL (Activity-log data is slow to first land on a new workspace — often 10-15 min; re-run until rows appear)
 az monitor log-analytics query -w "$WS_GUID" --analytics-query '
 AzureActivity
 | where TimeGenerated > ago(1h)
@@ -43,7 +43,7 @@ AzureActivity
 ' -o table
 
 # turn a query into an alert
-az monitor action-group create -g "$RG" -n campux-oncall --short-name cxoncall --email me you@example.com
+az monitor action-group create -g "$RG" -n campux-oncall --short-name cxoncall --action email me you@example.com
 AG_ID=$(az monitor action-group show -g "$RG" -n campux-oncall --query id -o tsv)
 az monitor scheduled-query create -g "$RG" -n campux-failed-ops --scopes "$WS_ID" \
   --condition "count 'placeholder' > 0" \
