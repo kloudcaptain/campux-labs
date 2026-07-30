@@ -1,5 +1,8 @@
 # Lab A — RBAC & Managed Identity: read a secret with zero credentials
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Identity & Governance (Lab A of 4)
 **Status:** ✅ Certified — passed a live end-to-end run (2026-07-24).
 

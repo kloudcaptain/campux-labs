@@ -1,5 +1,8 @@
 # Lab — Your first Bicep deploy: a storage account as code
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Standalone (Infrastructure as Code fundamentals)
 **Status:** Authored — **PENDING one real end-to-end certification run** before publish.
 **Level:** Beginner · **Time:** ~20 min · **Cost:** effectively free (an empty storage account, deleted at the end)

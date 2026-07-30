@@ -1,5 +1,8 @@
 # Lab B — App Registration & OIDC SSO: sign in with Microsoft Entra ID
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Identity & Governance (Lab B of 4)
 **Status:** Authored — **PENDING certification**, which for this lab has TWO parts (see note).
 **Level:** Intermediate · **Time:** ~35 min · **Cost:** effectively free (F1 App Service)

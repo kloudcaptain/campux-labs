@@ -1,5 +1,8 @@
 # Lab D — Azure Policy & policy-as-code: govern what can be built
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Identity & Governance (Lab D of 4)
 **Status:** Authored — **PENDING one real end-to-end certification run** before publish.
 **Level:** Advanced · **Time:** ~30 min (plus a few minutes waiting for policy to enforce) · **Cost:** effectively free (storage accounts created and deleted immediately)

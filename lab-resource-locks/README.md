@@ -1,5 +1,8 @@
 # Lab — Resource Locks: stop accidental deletion
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Standalone (Governance)
 **Status:** Authored — **PENDING one real end-to-end certification run** before publish.
 **Level:** Beginner–Intermediate · **Time:** ~20 min · **Cost:** effectively free (one storage account, deleted at the end)

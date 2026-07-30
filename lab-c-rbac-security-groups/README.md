@@ -1,5 +1,8 @@
 # Lab C — RBAC at scale with Entra security groups
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Identity & Governance (Lab C of 4)
 **Status:** Authored — **PENDING one real end-to-end certification run** before publish.
 **Level:** Intermediate · **Time:** ~30 min · **Cost:** effectively free (a Key Vault + one secret; pennies)
