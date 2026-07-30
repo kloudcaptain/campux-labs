@@ -1,5 +1,8 @@
 # GitHub Actions + OIDC — deploy to Azure with zero stored secrets
 
+![Target architecture](diagram.svg)
+
+
 **Track:** CI/CD · **Level:** Intermediate · **Time:** ~40 min · **Cost:** free (app registration) + pennies (deployed storage)
 **Status:** Authored — pending one real end-to-end certification run before publish.
 **Full walkthrough (illustrated):** https://azure.campux.co/lab-github-actions-oidc

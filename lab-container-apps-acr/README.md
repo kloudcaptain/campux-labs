@@ -1,5 +1,8 @@
 # Azure Container Apps + ACR — managed-identity pull, scale-to-zero
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Compute / Containers · **Level:** Intermediate · **Time:** ~35 min · **Cost:** scale-to-zero app + a Basic registry (pennies/day)
 **Status:** Authored — pending one real end-to-end certification run before publish.
 **Full walkthrough (illustrated):** https://azure.campux.co/lab-container-apps-acr

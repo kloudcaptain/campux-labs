@@ -1,5 +1,8 @@
 # Observability — Log Analytics, App Insights & a KQL alert
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Observability · **Level:** Intermediate · **Time:** ~35 min · **Cost:** free (within the Log Analytics daily ingestion allowance)
 **Status:** Authored — pending one real end-to-end certification run before publish.
 **Full walkthrough (illustrated):** https://azure.campux.co/lab-observability-kql

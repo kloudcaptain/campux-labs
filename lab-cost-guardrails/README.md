@@ -1,5 +1,8 @@
 # Cost guardrails — budgets, Advisor & a storage lifecycle policy
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Cost / FinOps · **Level:** Beginner · **Time:** ~30 min · **Cost:** free (guardrails are governance features; the empty storage account is free)
 **Status:** Authored — pending one real end-to-end certification run before publish.
 **Full walkthrough (illustrated):** https://azure.campux.co/lab-cost-guardrails

@@ -1,5 +1,8 @@
 # Grounded RAG on Azure AI Search
 
+![Target architecture](diagram.svg)
+
+
 **Track:** AI Platform · **Level:** Advanced · **Time:** ~50 min · **Cost:** free AI Search tier + a fraction of a cent for embeddings/answers
 **Status:** Authored — pending one real end-to-end certification run before publish.
 **Full walkthrough (illustrated):** https://azure.campux.co/lab-rag-azure-ai-search

@@ -1,5 +1,8 @@
 # Hub-and-spoke networking & segmentation
 
+![Target architecture](diagram.svg)
+
+
 **Track:** Networking · **Level:** Intermediate · **Time:** ~35 min · **Cost:** free (no VMs — VNets, peerings, and NSGs carry no hourly charge)
 **Status:** Authored — pending one real end-to-end certification run before publish.
 **Full walkthrough (illustrated):** https://azure.campux.co/lab-hub-spoke-networking

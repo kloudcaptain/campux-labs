@@ -1,5 +1,8 @@
 # Build & govern an MCP server on Azure
 
+![Target architecture](diagram.svg)
+
+
 **Track:** AI Platform · **Level:** Advanced · **Time:** ~50 min · **Cost:** scale-to-zero (a Container App + registry — pennies while up)
 **Status:** Authored — pending one real end-to-end certification run before publish.
 **Full walkthrough (illustrated):** https://azure.campux.co/lab-mcp-server-azure
